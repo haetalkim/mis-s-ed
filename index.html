@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISSED - TC Community Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<div class="device-frame">
+  <div class="notch"></div>
+  <div class="inner-screen" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    
+    <!-- SPLASH SCREEN -->
+    <div id="splash-screen" class="splash-screen">
+      <div class="app-title" id="app-title">
+        <span class="letter m">m</span><span class="letter i1">i</span><span class="letter s1">s</span><span class="letter s2">s</span><span class="letter e">e</span><span class="letter d">d</span>
+      </div>
+      <div class="author-text">Guiyoung / Jiin</div>
+      <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2Fwehpv%2FdJMb9YcaOax%2FAAAAAAAAAAAAAAAAAAAAACG42sJ3u2H9g7edV1eUPJ7zEAa3pIPXAgSOJ3s1X1FR%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1761922799%26allow_ip%3D%26allow_referer%3D%26signature%3DoJ3II%252Fr2eT5fa80snR8BTMrbxOc%253D" class="tc-logo" alt="TC Logo" />
+    </div>
+
+    <!-- ONBOARDING SCREENS -->
+    <div id="onboarding" class="onboarding-container">
+      <!-- Welcome Screen -->
+      <div class="onboarding-screen active" data-screen="1">
+        <div class="flex flex-col items-center justify-center h-full px-8 text-center">
+          <div class="text-6xl mb-6">👋</div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-3">Welcome to MISSED</h2>
+          <p class="text-base text-gray-600 mb-8">A safe space for TML international students to share verified information and support each other</p>
+          <button onclick="nextOnboarding()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold">Get Started</button>
+        </div>
+      </div>
+
+      <!-- Feature 1: Verified Info -->
+      <div class="onboarding-screen" data-screen="2">
+        <div class="flex flex-col items-center justify-center h-full px-8 text-center">
+          <div class="text-6xl mb-6">✅</div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-3">Verified Information</h2>
+          <p class="text-base text-gray-600 mb-8">Posts with sources are verified by moderators to ensure accuracy. Look for the green checkmark!</p>
+          <div class="flex gap-3">
+            <button onclick="prevOnboarding()" class="text-gray-600 px-6 py-3 rounded-xl font-semibold">Back</button>
+            <button onclick="nextOnboarding()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Report Misinformation -->
+      <div class="onboarding-screen" data-screen="3">
+        <div class="flex flex-col items-center justify-center h-full px-8 text-center">
+          <div class="text-6xl mb-6">🚨</div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-3">Report Concerns</h2>
+          <p class="text-base text-gray-600 mb-4">See something that doesn't seem right? Report it to help keep our community safe.</p>
+          <div class="bg-white rounded-2xl p-4 mb-6 text-left space-y-2">
+            <p class="text-sm text-gray-700"><span class="font-bold">📋</span> Missing source or unclear facts</p>
+            <p class="text-sm text-gray-700"><span class="font-bold">⚠️</span> Potentially misleading information</p>
+            <p class="text-sm text-gray-700"><span class="font-bold">🚫</span> Inappropriate or harmful content</p>
+          </div>
+          <p class="text-xs text-gray-500 mb-6">Your reports help moderators verify and correct information</p>
+          <div class="flex gap-3">
+            <button onclick="prevOnboarding()" class="text-gray-600 px-6 py-3 rounded-xl font-semibold">Back</button>
+            <button onclick="nextOnboarding()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Connect -->
+      <div class="onboarding-screen" data-screen="4">
+        <div class="flex flex-col items-center justify-center h-full px-8 text-center">
+          <div class="text-6xl mb-6">🤝</div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-3">Build Trust Networks</h2>
+          <p class="text-base text-gray-600 mb-8">Connect with peers through Academic Profile Handshake. Share schedules and collaborate safely</p>
+          <div class="flex gap-3">
+            <button onclick="prevOnboarding()" class="text-gray-600 px-6 py-3 rounded-xl font-semibold">Back</button>
+            <button onclick="finishOnboarding()" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold">Start Using MISSED</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- iPhone Status Bar -->
+    <div class="status-bar flex items-center justify-between px-6 pt-3 pb-1 text-xs font-semibold text-gray-900">
+      <div>9:18</div>
+      <div class="flex items-center gap-1">
+        <svg class="w-4 h-3" fill="currentColor" viewBox="0 0 16 12"><path d="M1.5 3h13a1 1 0 011 1v4a1 1 0 01-1 1h-13a1 1 0 01-1-1V4a1 1 0 011-1zm13.5 1.5v3h.5a.5.5 0 00.5-.5v-2a.5.5 0 00-.5-.5h-.5z"/></svg>
+        <span>100%</span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto pb-20">
+      
+      <!-- HOME PAGE -->
+      <div id="home" class="page-view active p-5 space-y-4">
+        <!-- Welcome Profile Card -->
+        <div class="bg-white rounded-3xl p-5 shadow-sm">
+          <div class="flex items-start gap-3 mb-4">
+            <div class="relative flex-shrink-0">
+              <img src="https://i.pinimg.com/736x/df/2f/dc/df2fdc0cc7a11a701bcf167a6142aa6d.jpg" class="w-16 h-16 rounded-full object-cover shadow-md" style="aspect-ratio: 1/1;" />
+              <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center border-2 border-white">
+                <span class="text-white text-xs">✓</span>
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <h1 class="text-lg font-bold text-gray-900 mb-1">Hi, Haetal!</h1>
+              <p class="text-xs text-gray-600 mb-1">Instr. Tech & Media</p>
+              <p class="text-xs text-blue-400">haetalkim@tc.columbia.edu</p>
+            </div>
+            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FbTQKcD%2FdJMb9Wk7PKH%2FAAAAAAAAAAAAAAAAAAAAAGWy4zjapaFyTqvF1POBrNO3g7k-5pC6_o96MCrOkyhZ%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1761922799%26allow_ip%3D%26allow_referer%3D%26signature%3Df1vvB0gs0q1mjRXz%252BgxwyJMPNLY%253D" class="w-10 h-10 object-contain flex-shrink-0" />
+          </div>
+          <div class="bg-blue-50 rounded-xl px-3 py-2 text-center">
+            <span class="text-xs font-semibold text-blue-700">✓ Verified Student</span>
+          </div>
+        </div>
+
+        <!-- Trust Score Widget -->
+        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <div>
+                <h3 class="text-sm font-semibold text-green-900 mb-1">Community Trust Score</h3>
+                <p class="text-xs text-green-700">Based on verified posts & reports</p>
+              </div>
+              <button onclick="openTrustScoreModal()" class="w-5 h-5 bg-green-200 rounded-full flex items-center justify-center text-green-700 hover:bg-green-300 transition-colors flex-shrink-0">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+            </div>
+            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+              92
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-3">
+            <div class="flex justify-between text-xs mb-1">
+              <span class="text-gray-600">Trust Level</span>
+              <span class="text-green-600 font-semibold">Excellent</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full" style="width: 92%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-2 gap-3">
+          <button onclick="openPostModal()" class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-2">
+              <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+            </div>
+            <div class="text-sm font-bold text-gray-900">New Post</div>
+          </button>
+          <button onclick="showPage('schedule')" class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all">
+            <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-2">
+              <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+            </div>
+            <div class="text-sm font-bold text-gray-900">My Schedule</div>
+          </button>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white rounded-3xl p-5 shadow-sm">
+          <h3 class="text-base font-bold text-gray-900 mb-3">Recent Activity</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 pb-3 border-b border-gray-100">
+              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+              <div class="flex-1">
+                <p class="text-sm text-gray-900"><span class="font-semibold">Jiin Hur</span> verified a post</p>
+                <p class="text-xs text-gray-500">5 min ago</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 pb-3 border-b border-gray-100">
+              <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <div class="flex-1">
+                <p class="text-sm text-gray-900"><span class="font-semibold">2 new posts</span> in F-1 Visa Help</p>
+                <p class="text-xs text-gray-500">1h ago</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+              <div class="flex-1">
+                <p class="text-sm text-gray-900"><span class="font-semibold">1 post flagged</span> for review</p>
+                <p class="text-xs text-gray-500">2h ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Posts -->
+        <div class="bg-white rounded-3xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-base font-bold text-gray-900">Recent Posts</h3>
+            <button onclick="showPage('communities')" class="text-blue-600 text-sm font-semibold">See all →</button>
+          </div>
+          <div class="space-y-3">
+            <!-- Post 1 -->
+            <div onclick="openPost(1)" class="bg-gray-50 rounded-2xl p-3 cursor-pointer hover:bg-gray-100 transition-all">
+              <div class="flex items-start gap-2 mb-2">
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">JH</div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-1">
+                    <span class="font-semibold text-gray-900 text-sm">Jiin Hur</span>
+                    <span class="bg-green-600 text-white px-1.5 py-0.5 rounded-full text-xs font-bold">✓</span>
+                  </div>
+                  <p class="text-xs text-gray-500">1h ago</p>
+                </div>
+              </div>
+              <h4 class="font-bold text-gray-900 text-sm mb-1">Best resources for CPT application?</h4>
+              <p class="text-xs text-gray-700 mb-2 line-clamp-2">I found this comprehensive guide from OISS. Has all the forms and requirements clearly listed!</p>
+              <div class="flex items-center gap-3 text-xs text-gray-600">
+                <span class="comment-count" data-post-id="1">💬 5 comments</span>
+                <span>👍 12 likes</span>
+              </div>
+            </div>
+
+            <!-- Post 2 -->
+            <div onclick="openPost(2)" class="bg-gray-50 rounded-2xl p-3 cursor-pointer hover:bg-gray-100 transition-all">
+              <div class="flex items-start gap-2 mb-2">
+                <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">MP</div>
+                <div class="flex-1 min-w-0">
+                  <span class="font-semibold text-gray-900 text-sm">Min Park</span>
+                  <p class="text-xs text-gray-500">2h ago</p>
+                </div>
+              </div>
+              <h4 class="font-bold text-gray-900 text-sm mb-1">Study group for EdTech?</h4>
+              <p class="text-xs text-gray-700 mb-2 line-clamp-2">Looking to form a study group for the midterm. Anyone interested?</p>
+              <div class="flex items-center gap-3 text-xs text-gray-600">
+                <span>💬 5 comments</span>
+                <span>👍 5 likes</span>
+              </div>
+            </div>
+
+            <!-- Post 3 - Flagged -->
+            <div onclick="openPost(3)" class="bg-red-50 rounded-2xl p-3 border border-red-200 cursor-pointer hover:bg-red-100 transition-all">
+              <div class="flex items-start gap-2 mb-2">
+                <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">??</div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-1">
+                    <span class="font-semibold text-gray-900 text-sm">Anonymous</span>
+                    <span class="bg-red-600 text-white px-1.5 py-0.5 rounded-full text-xs font-bold">⚠</span>
+                  </div>
+                  <p class="text-xs text-gray-500">4h ago</p>
+                </div>
+              </div>
+              <h4 class="font-bold text-gray-900 text-sm mb-1">URGENT: OPT applications suspended!</h4>
+              <p class="text-xs text-gray-700 mb-2 line-clamp-2">My friend at NYU said USCIS stopped processing OPT apps this week due to policy changes...</p>
+              <div class="flex items-center gap-3 text-xs text-red-600">
+                <span>💬 8 comments</span>
+                <span>🚨 5 reports</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMUNITIES PAGE -->
+      <div id="communities" class="page-view p-5 space-y-4">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-2xl font-bold text-gray-900">Communities</h2>
+          <button class="text-blue-600 text-sm font-semibold">+ Create</button>
+        </div>
+
+        <!-- Featured Community -->
+        <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-3xl p-5 shadow-lg text-white">
+          <div class="flex items-start justify-between mb-3">
+            <div>
+              <h3 class="text-lg font-bold mb-1">🎓 F-1 Visa Help</h3>
+              <p class="text-sm text-blue-100">Official verified information</p>
+            </div>
+            <span class="bg-white bg-opacity-20 px-2 py-1 rounded-lg text-xs font-bold">Featured</span>
+          </div>
+          <div class="flex items-center gap-4 mb-4">
+            <div class="text-center">
+              <div class="text-2xl font-bold">248</div>
+              <div class="text-xs text-blue-100">members</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold">89%</div>
+              <div class="text-xs text-blue-100">verified</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold">42</div>
+              <div class="text-xs text-blue-100">posts</div>
+            </div>
+          </div>
+          <button onclick="showCommunity('visa')" class="w-full bg-white text-blue-600 py-2 rounded-xl font-bold text-sm">
+            View Community
+          </button>
+        </div>
+
+        <!-- Community List -->
+        <div class="space-y-3">
+          <div onclick="showCommunity('career')" class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-2xl">💼</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900">Career & OPT Support</h3>
+                  <span class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded text-xs font-bold">Career Services</span>
+                </div>
+                <p class="text-xs text-gray-600 mb-1">Job search, resume reviews, OPT applications, interview prep</p>
+                <p class="text-xs text-gray-500">156 members • 78% verified</p>
+              </div>
+              <span class="text-gray-400">›</span>
+            </div>
+          </div>
+
+          <div onclick="showCommunity('housing')" class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-2xl">🏠</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900">Housing & Safety</h3>
+                  <span class="bg-red-100 text-red-700 px-2 py-0.5 rounded text-xs font-bold">Public Safety</span>
+                </div>
+                <p class="text-xs text-gray-600 mb-1">Apartment hunting, roommate matching, neighborhood safety, lease advice</p>
+                <p class="text-xs text-gray-500">203 members • 85% verified</p>
+              </div>
+              <span class="text-gray-400">›</span>
+            </div>
+          </div>
+
+          <div onclick="showCommunity('academic')" class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-2xl">📚</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900">Academic Resources</h3>
+                  <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-bold">TC Faculty</span>
+                </div>
+                <p class="text-xs text-gray-600 mb-1">Study tips, course recommendations, writing center, tutoring services</p>
+                <p class="text-xs text-gray-500">187 members • 92% verified</p>
+              </div>
+              <span class="text-gray-400">›</span>
+            </div>
+          </div>
+
+          <div onclick="showCommunity('social')" class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-2xl">🎉</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900">Social & Events</h3>
+                  <span class="bg-pink-100 text-pink-700 px-2 py-0.5 rounded text-xs font-bold">Student Life</span>
+                </div>
+                <p class="text-xs text-gray-600 mb-1">Meetups, cultural events, friend groups, weekend activities</p>
+                <p class="text-xs text-gray-500">312 members • 65% verified</p>
+              </div>
+              <span class="text-gray-400">›</span>
+            </div>
+          </div>
+          
+          <div onclick="showCommunity('health')" class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-2xl">🏥</div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900">Health & Wellness</h3>
+                  <span class="bg-teal-100 text-teal-700 px-2 py-0.5 rounded text-xs font-bold">CPS Verified</span>
+                </div>
+                <p class="text-xs text-gray-600 mb-1">Insurance, CPS counseling, medical appointments, mental health</p>
+                <p class="text-xs text-gray-500">142 members • 88% verified</p>
+              </div>
+              <span class="text-gray-400">›</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMUNITY DETAIL (F-1 Visa) -->
+      <div id="community-detail" class="page-view p-5 space-y-4">
+        <div class="flex items-center gap-3 mb-2">
+          <button onclick="showPage('communities')" class="text-blue-600 font-semibold">‹ Back</button>
+        </div>
+
+        <!-- Community Header -->
+        <div class="bg-white rounded-3xl p-5 shadow-sm">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl" id="community-emoji">🎓</div>
+            <div class="flex-1">
+              <h2 id="community-name" class="text-xl font-bold text-gray-900 mb-1">F-1 Visa Help</h2>
+              <p id="community-description" class="text-sm text-gray-600 mb-2">Official verified information for international students. Moderated by OISS staff.</p>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span id="community-members" class="bg-green-100 text-green-700 px-2 py-1 rounded-lg text-xs font-semibold">248 members</span>
+                <span id="community-verified" class="bg-blue-100 text-blue-700 px-2 py-1 rounded-lg text-xs font-semibold">89% verified</span>
+                <span id="community-badge" class="bg-purple-100 text-purple-700 px-2 py-1 rounded-lg text-xs font-semibold">OISS Verified</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Community Guidelines -->
+          <div id="community-focus-box" class="bg-blue-50 rounded-xl p-3 mb-3">
+            <div class="flex items-start gap-2">
+              <span class="text-lg">ℹ️</span>
+              <div class="flex-1">
+                <h3 class="font-bold text-blue-900 text-xs mb-1">Community Focus</h3>
+                <p id="community-focus" class="text-xs text-blue-800">Visa status, work authorization (CPT/OPT/STEM OPT), travel, I-20 issues, and official USCIS updates. All visa advice is verified by OISS.</p>
+              </div>
+            </div>
+          </div>
+          
+          <button onclick="openPostModal()" class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold text-sm">
+            + New Post
+          </button>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex gap-2 overflow-x-auto pb-2">
+          <button onclick="filterPosts('all')" class="filter-tab active px-4 py-2 bg-blue-600 text-white rounded-xl font-semibold text-sm whitespace-nowrap">All</button>
+          <button onclick="filterPosts('verified')" class="filter-tab px-4 py-2 bg-gray-100 text-gray-700 rounded-xl font-semibold text-sm whitespace-nowrap">Verified ✓</button>
+          <button onclick="filterPosts('flagged')" class="filter-tab px-4 py-2 bg-gray-100 text-gray-700 rounded-xl font-semibold text-sm whitespace-nowrap">Flagged ⚠</button>
+        </div>
+
+        <!-- Posts Feed -->
+        <div id="community-posts" class="space-y-3">
+          <!-- Verified Post -->
+          <div onclick="openPost(1)" class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">JH</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-bold text-gray-900 text-sm">Jiin Hur</span>
+                  <span class="bg-green-600 text-white px-2 py-0.5 rounded-full text-xs font-bold">✓</span>
+                </div>
+                <p class="text-xs text-gray-600">TML '26 • 1h ago</p>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Best resources for CPT application?</h3>
+            <p class="text-sm text-gray-700 mb-2">I found this comprehensive guide from OISS. Has all the forms and requirements clearly listed!</p>
+            <div class="bg-blue-50 rounded-xl p-2 mb-2">
+              <span class="text-xs text-blue-600 font-semibold">🔗 tc.columbia.edu/oiss/cpt-guide</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs text-gray-600">
+              <span>💬 3 comments</span>
+              <span>👍 12 likes</span>
+            </div>
+          </div>
+
+          <!-- Regular Post -->
+          <div onclick="openPost(2)" class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">MP</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-bold text-gray-900 text-sm">Min Park</span>
+                </div>
+                <p class="text-xs text-gray-600">TML '27 • 2h ago</p>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Study group for EdTech?</h3>
+            <p class="text-sm text-gray-700 mb-2">Looking to form a study group for the midterm. Anyone interested?</p>
+            <div class="flex items-center gap-4 text-xs text-gray-600">
+              <span>💬 5 comments</span>
+              <span>👍 5 likes</span>
+            </div>
+          </div>
+
+          <!-- FLAGGED Post - Key Example! -->
+          <div onclick="openPost(3)" class="bg-red-50 border-2 border-red-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="bg-red-600 text-white px-2 py-1 rounded-lg text-xs font-bold">⚠ Community Flagged</span>
+              <span class="text-xs text-red-700 font-semibold">Multiple reports</span>
+            </div>
+            <div class="flex items-start gap-3 mb-2">
+              <div class="w-10 h-10 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0">??</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-bold text-gray-900 text-sm">Anonymous</span>
+                </div>
+                <p class="text-xs text-gray-600">4h ago</p>
+              </div>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">URGENT: OPT applications suspended!</h3>
+            <p class="text-sm text-gray-700 mb-2">My friend at NYU said USCIS stopped processing...</p>
+            <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-2 mb-2">
+              <p class="text-xs text-yellow-800">⚠ No source provided • May contain misinformation</p>
+            </div>
+            <div class="flex items-center gap-4 text-xs text-gray-600">
+              <span>💬 8 comments</span>
+              <span class="text-red-600 font-semibold">🚨 5 reports</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POST DETAIL -->
+      <div id="post-detail" class="page-view p-5 space-y-4">
+        <div class="flex items-center gap-3 mb-2">
+          <button onclick="showPage('community-detail')" class="text-blue-600 font-semibold">‹ Back</button>
+        </div>
+
+        <!-- Post Content -->
+        <div class="bg-white rounded-3xl p-5 shadow-sm">
+          <!-- Flagged Post Warning Banner -->
+          <div id="flagged-warning" class="bg-red-50 border-2 border-red-300 rounded-xl p-4 mb-4 hidden">
+            <div class="flex items-start gap-3">
+              <div class="text-2xl">⚠️</div>
+              <div class="flex-1">
+                <h3 class="font-bold text-red-900 text-sm mb-1">Community Flagged: Potential Misinformation</h3>
+                <p class="text-xs text-red-800 mb-2">This post has been reported by multiple community members and may contain inaccurate information. Please verify with official sources before acting on this content.</p>
+                <div class="bg-red-100 rounded-lg p-2">
+                  <p class="text-xs text-red-900 font-semibold">✓ Always check verified posts and official sources (OISS, Career Services, etc.)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3 mb-3">
+            <div id="post-author-avatar" class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">JH</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-1">
+                <span id="post-author-name" class="font-bold text-gray-900">Jiin Hur</span>
+                <span id="post-badge" class="bg-green-600 text-white px-2 py-0.5 rounded-full text-xs font-bold">✓</span>
+              </div>
+              <p id="post-author-meta" class="text-xs text-gray-600">TML '26 • 1h ago</p>
+            </div>
+            <button onclick="openReportModal(event, 1)" class="text-gray-400 hover:text-red-600">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"/></svg>
+            </button>
+          </div>
+          <h2 id="post-title" class="text-lg font-bold text-gray-900 mb-2">Best resources for CPT application?</h2>
+          <p id="post-content" class="text-sm text-gray-700 mb-3">I found this comprehensive guide from OISS. Has all the forms and requirements clearly listed!</p>
+          
+          <!-- Warning for flagged posts -->
+          <div id="post-warning" class="bg-yellow-50 border border-yellow-300 rounded-xl p-3 mb-3 hidden">
+            <p class="text-xs text-yellow-800 font-semibold">⚠ This post has been flagged by multiple community members for potential misinformation</p>
+          </div>
+          
+          <div id="post-link" class="bg-blue-50 rounded-xl p-3 mb-3 overflow-hidden">
+            <span class="text-sm text-blue-600 font-semibold break-all link-text">🔗 tc.columbia.edu/oiss/cpt-guide</span>
+          </div>
+          <div class="flex items-center gap-4 pt-3 border-t border-gray-100">
+            <button onclick="likePost(event)" id="like-button" class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"/></svg>
+              <span id="like-count" class="text-sm font-semibold">12</span>
+            </button>
+            <button onclick="dislikePost(event)" id="dislike-button" class="flex items-center gap-2 text-gray-600 hover:text-red-600 transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z"/></svg>
+              <span id="dislike-count" class="text-sm font-semibold">2</span>
+            </button>
+            <div class="flex items-center gap-2 text-gray-600">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"/></svg>
+              <span id="comment-count" class="text-sm font-semibold">5 comments</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="space-y-3">
+          <!-- Comments will be dynamically inserted here -->
+        </div>
+
+        <!-- Add Comment -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm mt-4">
+          <textarea id="comment-input" placeholder="Add a comment..." rows="2" class="w-full px-3 py-2 rounded-xl bg-gray-50 mb-2 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <label class="flex items-center gap-1 text-xs text-gray-600 cursor-pointer">
+                <input type="checkbox" id="comment-verification-checkbox" onchange="toggleCommentVerification()" class="w-4 h-4" />
+                <span>Add source</span>
+              </label>
+            </div>
+            <button onclick="postComment()" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-blue-700 transition-colors">Post</button>
+          </div>
+          <div id="comment-source-input" class="hidden mt-2">
+            <input type="url" id="comment-source-url" placeholder="Source URL (e.g., tc.columbia.edu/oiss)" class="w-full px-3 py-2 rounded-xl bg-blue-50 border border-blue-200 text-xs focus:outline-none" />
+            <p class="text-xs text-blue-600 mt-1">✓ Moderators will verify this source</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHEDULE PAGE -->
+      <div id="schedule" class="page-view p-5 space-y-4">
+        <div class="flex items-center gap-2 mb-2">
+          <h2 id="schedule-title" class="text-2xl font-bold text-gray-900">My Schedule</h2>
+          <button onclick="openScheduleInfoModal()" class="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 hover:bg-purple-200 transition-colors">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Compact Stats Badge -->
+        <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-2xl p-3 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center text-white text-lg">🤝</div>
+            <div>
+              <p class="text-xs font-semibold text-purple-900">Academic Handshake</p>
+              <p class="text-xs text-purple-700">Shared with 2 connections</p>
+            </div>
+          </div>
+          <button onclick="openScheduleInfoModal()" class="text-xs text-purple-600 font-semibold hover:text-purple-800">
+            Learn more
+          </button>
+        </div>
+
+        <!-- Schedule Grid -->
+        <div class="bg-white rounded-3xl p-4 shadow-sm">
+          <div id="schedule-error" class="hidden bg-red-50 border border-red-200 rounded-xl p-4 mb-4">
+            <p class="text-sm text-red-700 font-semibold mb-1">🔒 No Access</p>
+            <p class="text-xs text-red-600">This user hasn't shared their schedule with you yet.</p>
+          </div>
+          <div id="schedule-grid">
+            <!-- Schedule will be rendered here -->
+          </div>
+        </div>
+
+        <!-- Connected Users -->
+        <div class="bg-white rounded-3xl p-4 shadow-sm">
+          <h3 class="font-bold text-gray-900 mb-3">Connected Students</h3>
+          <div class="space-y-2">
+            <button onclick="switchSchedule('self', 'Guiyoung Jeon')" class="w-full flex items-center gap-3 p-2 bg-blue-50 rounded-xl hover:bg-blue-100 transition">
+              <div class="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">GJ</div>
+              <div class="flex-1 text-left min-w-0">
+                <div class="font-semibold text-gray-900 text-xs">Guiyoung Jeon (You)</div>
+                <div class="text-xs text-blue-600">✓ Your schedule</div>
+              </div>
+            </button>
+            <button onclick="switchSchedule('jiin', 'Jiin Hur')" class="w-full flex items-center gap-3 p-2 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
+              <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">JH</div>
+              <div class="flex-1 text-left min-w-0">
+                <div class="font-semibold text-gray-900 text-xs">Jiin Hur</div>
+                <div class="text-xs text-green-600">✓ Sharing</div>
+              </div>
+            </button>
+            <button onclick="switchSchedule('min', 'Min Park')" class="w-full flex items-center gap-3 p-2 bg-gray-50 rounded-xl">
+              <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">MP</div>
+              <div class="flex-1 text-left min-w-0">
+                <div class="font-semibold text-gray-900 text-xs">Min Park</div>
+                <div class="text-xs text-gray-500">🔒 No consent</div>
+              </div>
+            </button>
+            <button onclick="switchSchedule('lizy', 'Lizy Choi')" class="w-full flex items-center gap-3 p-2 bg-gray-50 rounded-xl hover:bg-gray-100 transition">
+              <div class="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0">LC</div>
+              <div class="flex-1 text-left min-w-0">
+                <div class="font-semibold text-gray-900 text-xs">Lizy Choi</div>
+                <div class="text-xs text-green-600">✓ Sharing</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAT PAGE -->
+      <div id="chat" class="page-view p-5 space-y-3">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Messages</h2>
+        
+        <div onclick="openChat('admin')" class="bg-white rounded-2xl p-4 shadow-sm cursor-pointer hover:bg-gray-50 transition">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">TC</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between mb-1">
+                <div class="font-bold text-gray-900">TML Admin</div>
+                <div class="text-xs text-gray-500">10min ago</div>
+              </div>
+              <p class="text-sm text-gray-600 truncate">We've received your report. Thanks for...</p>
+            </div>
+          </div>
+        </div>
+
+        <div onclick="openChat('jiin')" class="bg-white rounded-2xl p-4 shadow-sm cursor-pointer hover:bg-gray-50 transition">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">JH</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between mb-1">
+                <div class="font-bold text-gray-900">Jiin Hur</div>
+                <div class="text-xs text-gray-500">1h ago</div>
+              </div>
+              <p class="text-sm text-gray-600 truncate">See you at the study group!</p>
+            </div>
+          </div>
+        </div>
+
+        <div onclick="openChat('guiyoung')" class="bg-white rounded-2xl p-4 shadow-sm cursor-pointer hover:bg-gray-50 transition">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">GJ</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between mb-1">
+                <div class="font-bold text-gray-900">Guiyoung Jeon</div>
+                <div class="text-xs text-gray-500">2h ago</div>
+              </div>
+              <p class="text-sm text-gray-600 truncate">Thanks for sharing that link!</p>
+            </div>
+          </div>
+        </div>
+
+        <div onclick="openChat('lizy')" class="bg-white rounded-2xl p-4 shadow-sm cursor-pointer hover:bg-gray-50 transition">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">LC</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between mb-1">
+                <div class="font-bold text-gray-900">Lizy Choi</div>
+                <div class="text-xs text-gray-500">1d ago</div>
+              </div>
+              <p class="text-sm text-gray-600 truncate">Did you see the Coursera posting?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOKMARKS PAGE -->
+      <div id="folder" class="page-view p-5 space-y-3">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Saved</h2>
+        <div class="space-y-3">
+          <div class="bg-white rounded-2xl p-4 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-xl">📋</div>
+            <div class="flex-1">
+              <div class="font-bold text-gray-900 text-sm">Visa & F-1 Policy</div>
+              <div class="text-xs text-gray-600">12 items</div>
+            </div>
+            <span class="text-gray-400">›</span>
+          </div>
+          <div class="bg-white rounded-2xl p-4 shadow-sm flex items-center gap-4">
+            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-xl">🎓</div>
+            <div class="flex-1">
+              <div class="font-bold text-gray-900 text-sm">Academic Support</div>
+              <div class="text-xs text-gray-600">8 items</div>
+            </div>
+            <span class="text-gray-400">›</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="glass border-t border-gray-200 px-4 py-2 flex items-center justify-around absolute bottom-0 left-0 right-0 z-50">
+      <button onclick="showPage('home')" class="nav-item active flex flex-col items-center gap-1" data-page="home">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+        <span class="text-xs">Home</span>
+      </button>
+      <button onclick="showPage('communities')" class="nav-item flex flex-col items-center gap-1 text-gray-600" data-page="communities">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+        <span class="text-xs">Community</span>
+      </button>
+      <button onclick="showPage('schedule')" class="nav-item flex flex-col items-center gap-1 text-gray-600" data-page="schedule">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
+        <span class="text-xs">Schedule</span>
+      </button>
+      <button onclick="showPage('chat')" class="nav-item flex flex-col items-center gap-1 text-gray-600" data-page="chat">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"/></svg>
+        <span class="text-xs">Chat</span>
+      </button>
+      <button onclick="showPage('folder')" class="nav-item flex flex-col items-center gap-1 text-gray-600" data-page="folder">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/></svg>
+        <span class="text-xs">Saved</span>
+      </button>
+    </nav>
+
+    <!-- Post Modal -->
+    <div id="post-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center">
+      <div class="bg-white rounded-3xl w-10/12 max-w-sm p-5 shadow-2xl mx-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-base font-bold text-gray-900">Create Post</h3>
+          <button onclick="closePostModal()" class="text-gray-400 text-xl">&times;</button>
+        </div>
+        
+        <!-- Community Selector -->
+        <div class="mb-3">
+          <label class="text-xs font-semibold text-gray-700 mb-1 block">Select Community</label>
+          <select id="post-community-select" class="w-full px-3 py-2 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="visa">🎓 F-1 Visa Help (OISS Verified)</option>
+            <option value="career">💼 Career & OPT Support</option>
+            <option value="housing">🏠 Housing & Safety</option>
+            <option value="academic">📚 Academic Resources</option>
+            <option value="social">🎉 Social & Events</option>
+            <option value="health">🏥 Health & Wellness</option>
+          </select>
+        </div>
+        
+        <input type="text" placeholder="Title" class="w-full px-3 py-2 rounded-xl bg-gray-50 mb-2 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <textarea placeholder="Share information to help our community..." rows="3" class="w-full px-3 py-2 rounded-xl bg-gray-50 mb-2 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        
+        <!-- Emphasis on verification for combating misinformation -->
+        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-3 mb-3">
+          <p class="text-xs text-yellow-800 mb-2"><span class="font-bold">💡 Help fight misinformation:</span> Adding a source helps moderators verify your information and builds community trust.</p>
+        </div>
+        
+        <div class="flex items-center justify-between bg-gray-50 p-2 rounded-xl mb-2">
+          <span class="text-xs font-semibold text-gray-900">Post anonymously</span>
+          <input type="checkbox" id="post-anon-checkbox" class="w-4 h-4" />
+        </div>
+        <div class="flex items-center justify-between bg-blue-50 p-2 rounded-xl mb-2">
+          <span class="text-xs font-semibold text-gray-900">Add Source for Verification</span>
+          <input type="checkbox" id="verification-checkbox" onchange="toggleVerification()" class="w-4 h-4" />
+        </div>
+        <div id="source-input" class="hidden mb-2">
+          <input type="url" placeholder="Source URL (e.g., tc.columbia.edu/oiss, uscis.gov)" class="w-full px-3 py-2 rounded-xl bg-blue-50 border border-blue-200 text-xs focus:outline-none" />
+          <p class="text-xs text-blue-600 mt-1">✓ Moderators will verify this source</p>
+        </div>
+        <button onclick="submitPost()" class="w-full bg-blue-600 text-white py-2 rounded-xl font-bold text-sm hover:bg-blue-700 transition-colors">Post</button>
+      </div>
+    </div>
+
+    <!-- Report Modal -->
+    <div id="report-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center">
+      <div class="bg-white rounded-3xl w-10/12 max-w-sm p-5 shadow-2xl mx-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-base font-bold text-red-600">⚠️ Report Content</h3>
+          <button onclick="closeReportModal()" class="text-gray-400 text-xl">&times;</button>
+        </div>
+        <div class="bg-red-50 border border-red-200 rounded-xl p-3 mb-3">
+          <p class="text-xs text-red-700">Help keep our community safe by reporting concerning content. Your report will be reviewed by moderators.</p>
+        </div>
+        <select class="w-full px-3 py-2 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:outline-none mb-2">
+          <option>Misinformation / False claims</option>
+          <option>No source provided</option>
+          <option>Misleading title</option>
+          <option>Spam or promotional</option>
+          <option>Inappropriate content</option>
+        </select>
+        <textarea placeholder="Additional details (optional)" rows="2" class="w-full px-3 py-2 rounded-xl bg-gray-50 mb-3 border border-gray-200 text-sm focus:outline-none"></textarea>
+        <button onclick="submitReport()" class="w-full bg-red-600 text-white py-2 rounded-xl font-bold text-sm hover:bg-red-700 transition-colors">Submit Report</button>
+      </div>
+    </div>
+
+    <!-- Schedule Info Modal -->
+    <div id="schedule-info-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center">
+      <div class="bg-white rounded-3xl w-10/12 max-w-sm p-5 shadow-2xl mx-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-lg font-bold text-purple-900">🤝 Academic Handshake</h3>
+          <button onclick="closeScheduleInfoModal()" class="text-gray-400 text-xl">&times;</button>
+        </div>
+        
+        <div class="space-y-3 mb-4">
+          <div class="bg-purple-50 rounded-xl p-3">
+            <h4 class="font-semibold text-purple-900 text-sm mb-1">What is it?</h4>
+            <p class="text-xs text-purple-700">Share your class schedule with trusted peers to find study partners and discover common free time.</p>
+          </div>
+          
+          <div class="bg-blue-50 rounded-xl p-3">
+            <h4 class="font-semibold text-blue-900 text-sm mb-1">✓ Privacy-First</h4>
+            <p class="text-xs text-blue-700">You control who sees your schedule. Others can only view it if you both consent to share.</p>
+          </div>
+          
+          <div class="bg-green-50 rounded-xl p-3">
+            <h4 class="font-semibold text-green-900 text-sm mb-1">🎯 Benefits</h4>
+            <ul class="text-xs text-green-700 space-y-1">
+              <li>• Find classmates for study groups</li>
+              <li>• Discover common free periods</li>
+              <li>• Coordinate meeting times easily</li>
+              <li>• Build academic connections</li>
+            </ul>
+          </div>
+        </div>
+        
+        <button onclick="closeScheduleInfoModal()" class="w-full bg-purple-600 text-white py-2 rounded-xl font-bold text-sm hover:bg-purple-700 transition-colors">Got it!</button>
+      </div>
+    </div>
+
+    <!-- Trust Score Info Modal -->
+    <div id="trust-score-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center">
+      <div class="bg-white rounded-3xl w-10/12 max-w-sm p-5 shadow-2xl mx-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-lg font-bold text-green-900">📊 Trust Score Calculation</h3>
+          <button onclick="closeTrustScoreModal()" class="text-gray-400 text-xl">&times;</button>
+        </div>
+        
+        <div class="space-y-3 mb-4">
+          <div class="bg-green-50 rounded-xl p-3">
+            <h4 class="font-semibold text-green-900 text-sm mb-2">How It's Calculated</h4>
+            <div class="space-y-2 text-xs text-green-800">
+              <div class="flex items-start gap-2">
+                <span class="font-bold">✓</span>
+                <p><span class="font-semibold">Verified Posts:</span> Posts with sources checked by TML moderators or OISS staff</p>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="font-bold">📊</span>
+                <p><span class="font-semibold">Formula:</span> (Verified Posts ÷ Total Posts) × 100</p>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="font-bold">⚖️</span>
+                <p><span class="font-semibold">Community Weight:</span> Each community's rate contributes to overall score</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-blue-50 rounded-xl p-3">
+            <h4 class="font-semibold text-blue-900 text-sm mb-2">What Affects the Score</h4>
+            <div class="space-y-1 text-xs text-blue-800">
+              <p>✅ Posts with verified sources <span class="font-semibold">(+)</span></p>
+              <p>⚠️ Flagged posts removed <span class="font-semibold">(neutral)</span></p>
+              <p>📝 Unverified student posts <span class="font-semibold">(counted, not penalized)</span></p>
+              <p>🚨 Corrected misinformation <span class="font-semibold">(improves over time)</span></p>
+            </div>
+          </div>
+          
+          <div class="bg-yellow-50 rounded-xl p-3">
+            <h4 class="font-semibold text-yellow-900 text-sm mb-1">Score Ranges</h4>
+            <div class="space-y-1 text-xs text-yellow-800">
+              <p><span class="font-bold">90-100:</span> Excellent</p>
+              <p><span class="font-bold">75-89:</span> Good</p>
+              <p><span class="font-bold">60-74:</span> Fair</p>
+              <p><span class="font-bold">&lt;60:</span> Needs Improvement</p>
+            </div>
+          </div>
+          
+          <div class="bg-purple-50 rounded-xl p-3">
+            <p class="text-xs text-purple-800">
+              <span class="font-semibold">Community Rate Example:</span><br/>
+              F-1 Visa Help: 89% verified = 35/39 posts have verified sources from OISS
+            </p>
+          </div>
+        </div>
+        
+        <button onclick="closeTrustScoreModal()" class="w-full bg-green-600 text-white py-2 rounded-xl font-bold text-sm hover:bg-green-700 transition-colors">Got it!</button>
+      </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="success-toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-xl shadow-lg hidden z-50">
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <span id="toast-message" class="font-semibold">Success!</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

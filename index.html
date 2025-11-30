@@ -1123,9 +1123,9 @@
       </div>
 
       <!-- CHAT DETAIL/CONVERSATION PAGE -->
-      <div id="chat-detail" class="page-view flex flex-col h-full">
+      <div id="chat-detail" class="page-view flex flex-col h-full p-0">
         <!-- Chat Header -->
-        <div class="flex items-center gap-3 p-4 border-b border-gray-200 bg-white">
+        <div class="flex items-center gap-3 p-4 border-b border-gray-200 bg-white flex-shrink-0">
           <button onclick="showPage('chat')" class="text-blue-600 font-semibold">‹ Back</button>
           <div id="chat-detail-avatar" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">TC</div>
           <div class="flex-1 min-w-0">
@@ -1135,12 +1135,12 @@
         </div>
 
         <!-- Messages Container -->
-        <div id="chat-messages-container" class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+        <div id="chat-messages-container" class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50 min-h-0">
           <!-- Messages will be dynamically rendered here -->
         </div>
 
         <!-- Message Input -->
-        <div class="p-4 bg-gray-50 border-t border-gray-200">
+        <div class="p-4 bg-gray-50 border-t border-gray-200 flex-shrink-0">
           <div class="flex items-center gap-2">
             <input 
               type="text" 
@@ -1151,7 +1151,7 @@
             />
             <button 
               onclick="sendChatMessage()" 
-              class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
+              class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors flex-shrink-0"
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
             </button>

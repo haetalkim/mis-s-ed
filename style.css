@@ -15,6 +15,70 @@ body {
   margin: 30px auto;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+}
+
+/* Toast notification - highest z-index, contained within device frame */
+#success-toast {
+  position: absolute !important;
+  z-index: 99999 !important;
+  top: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 3rem);
+  width: auto;
+  min-width: 200px;
+  max-width: 320px;
+  white-space: normal;
+  word-wrap: break-word;
+  pointer-events: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#success-toast:not(.hidden) {
+  pointer-events: auto;
+  display: flex !important;
+}
+
+#success-toast > div {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* Ensure modals don't overflow device frame - positioned relative to device frame */
+.device-frame .modal {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: none;
+}
+
+.device-frame .modal.active {
+  z-index: 100;
+  display: flex !important;
+}
+
+/* Constrain modal content to device frame width */
+.device-frame .modal > div {
+  max-width: calc(100% - 2rem);
+  max-height: calc(100% - 2rem);
+  overflow-y: auto;
+  margin: auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Toast must be above everything */
+#success-toast {
+  z-index: 99999 !important;
 }
 
 .notch {
@@ -53,10 +117,12 @@ body {
 
 .modal {
   display: none;
+  z-index: 100;
 }
 
 .modal.active {
   display: flex;
+  z-index: 100;
 }
 
 .nav-item.active {
@@ -151,6 +217,66 @@ body {
   bottom: 120px;
   width: 70px;
   height: 70px;
+}
+
+/* Login Styles */
+.login-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #003366;
+  z-index: 998;
+  display: none;
+  transition: opacity 0.5s ease-out;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.login-container.active {
+  display: flex;
+}
+
+.login-container.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.login-container > div {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* TC Logo positioning removed - now using flexbox layout */
+
+/* iOS-style input improvements */
+.login-container input {
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.login-container input:focus {
+  background-color: #ffffff;
+}
+
+.login-container input::placeholder {
+  color: #9ca3af;
+  opacity: 1;
 }
 
 /* Onboarding Styles */

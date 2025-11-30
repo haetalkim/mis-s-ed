@@ -115,6 +115,13 @@ body {
   display: block;
 }
 
+/* Chat detail page needs flex layout */
+#chat-detail.active {
+  display: flex !important;
+  height: 100%;
+  max-height: calc(100vh - 60px); /* Account for bottom nav */
+}
+
 .modal {
   display: none;
   z-index: 100;

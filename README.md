@@ -1,4 +1,6 @@
-mis-s-ed 
+**mis-s-ed **
+
 Mobile Computing for Social Change
 Jiin Hur / Guiyoung Jeon 
-2025 
+
+_2025 _

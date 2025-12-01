@@ -1,6 +1,8 @@
-MIS-S-E-D
+MIS-S-E-D★
 
-Mobile Computing for Social Change
+MSTU 4037: Mobile Computing for Social Change
+<br/>
+Instructor: Jooeun Shim
 <br/>
 Jiin Hur / Guiyoung Jeon
 <br/>
